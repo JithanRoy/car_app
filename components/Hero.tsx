@@ -1,7 +1,6 @@
 "use client"
 import Image from 'next/image';
 import { CustomButton } from '.';
-import { CustomButtonProps } from '@/types';
 
 const Hero = () => {
     const handleScroll = () => {
@@ -24,14 +23,18 @@ const Hero = () => {
                 handleClick = {handleScroll}
             />
         </div>
-
         <div className='hero__image-container'>
             <div className='hero_image'>
-                <Image src="/hero.png" alt='hero' fill className='object-contain' />
-                <div className='hero__image-overlay' />
+                <Image src="/hero.png" 
+                    alt='hero'
+                    fill 
+                    className='object-contain hero_image_style'
+            />
             </div>
+            <div className='hero__image-overlay' />
         </div>
     </div>
+
   )
 }
 
