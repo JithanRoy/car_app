@@ -78,8 +78,6 @@ export const manufacturers = [
         { title: "Featured", url: "/" },
         { title: "Partnership", url: "/" },
         { title: "Bussiness Relation", url: "/" },
-        { title: "Bussiness Relation", url: "/" },
-        { title: "Bussiness Relation", url: "/" },
       ],
     },
     {
