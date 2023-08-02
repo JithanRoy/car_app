@@ -23,16 +23,15 @@ const options = {
 	headers: {
 		'X-RapidAPI-Key': 'f1a7f1e011msha831845f18eca19p1cc4ffjsn2f9bda1fd95b',
 		'X-RapidAPI-Host': 'cars-by-api-ninjas.p.rapidapi.com'
+		}
+	};
+	try {
+		const response = await fetch(url, options);
+		const result = await response.text();
+		console.log(result);
+	} catch (error) {
+		console.error(error);
 	}
-};
-
-try {
-	const response = await fetch(url, options);
-	const result = await response.text();
-	console.log(result);
-} catch (error) {
-	console.error(error);
-}
 
 export async function fetchCars(filters : FilterProps) {
 	const { manufacturer, year, model, limit, fuel } = filters;
@@ -40,13 +39,11 @@ export async function fetchCars(filters : FilterProps) {
         'X-RapidAPI-Key': 'f1a7f1e011msha831845f18eca19p1cc4ffjsn2f9bda1fd95b',
 		'X-RapidAPI-Host': 'cars-by-api-ninjas.p.rapidapi.com'
     }
-
     const response = await fetch(
 		`https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`,
 		{
 			headers: headers,
 		});
-
 	const result = await response.json();
 	return result;
 }

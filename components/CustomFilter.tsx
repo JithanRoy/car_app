@@ -2,15 +2,32 @@
 import { customFilteredProps } from '@/types'
 import { Listbox, Transition } from '@headlessui/react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import React, { Fragment, useState } from 'react'
 
 const CustomFilter = ({title, options}: customFilteredProps) => {
-  const [seleted, setSeleted] = useState(options[0])
+  const [seleted, setSeleted] = useState(options[0]);
+  const router = useRouter();
+
+  const updateSearchParams = (type: string, value: string) => {
+        const searchParams = new URLSearchParams(window.location.search);
+        searchParams.set(type, value);
+        const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
+        return newPathname;
+  };
+
+  const handleUpdateParams = (e: { title: string; value: string }) => {
+     const newPathName = updateSearchParams(title, e.value.toLowerCase());
+     router.push(newPathName);
+  }
   return (
     <div className='w-fit'>
       <Listbox
         value='selected'
-        onChange={(e:any) => setSeleted(e)}
+        onChange={(e:any) => {
+          setSeleted(e);
+          handleUpdateParams(e);
+        }}
       >
         <div className='relative w-fit z-10'>
             <Listbox.Button className='custom-filter__btn'>
@@ -47,8 +64,7 @@ const CustomFilter = ({title, options}: customFilteredProps) => {
                           </>
                         )}
                       </Listbox.Option>
-                    ))
-                  }
+                    ))}
               </Listbox.Options>
             </Transition>
         </div>

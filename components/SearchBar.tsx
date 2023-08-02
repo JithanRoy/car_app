@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const SearchButton = ({otherClasses} : {otherClasses: string}) => (
-    <button type="submit" className= {`-ml-3 z-10 ${otherClasses}`}>
+    <button type="submit" id="carShowSmooth" className= {`-ml-3 z-10 ${otherClasses}`}>
         <Image
           src='/magnifying-glass.svg'
           alt="magnifying glass"
@@ -23,7 +23,6 @@ const SearchBar = () => {
 
     const handleSearch = (e: any) => {
         e.preventDefault();
-
         if(manufacturer === '' && model === ''){
           return alert('Please provide some input');
         }
@@ -32,6 +31,7 @@ const SearchBar = () => {
 
     const updateSearchParams = (model: string, manufacturer: string) => {
       const searchParams = new URLSearchParams(window.location.search);
+
           if(model) {
               searchParams.set("model", model);
           } else {
@@ -43,6 +43,7 @@ const SearchBar = () => {
           } else {
             searchParams.delete("manufacturer");
           }
+
           const newPathname = `${window.location.pathname}?${searchParams.toString()}`
           router.push(newPathname);
        }
