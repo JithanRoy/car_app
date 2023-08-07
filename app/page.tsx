@@ -19,7 +19,7 @@ export default async function Home({searchParams}: HomeProps) {
        <Hero />
        <div className='mt-12 padding-x padding-y' id='discover'>
           <div className='home__text-container'>
-              <h1 className='text-4xl font-extrabold'>Car Catalogue</h1>
+              <h1 className='text-4xl font-extrabold overflow-hidden'>Car Catalogue</h1>
               <p>Explore out cars you might like</p>
           </div>
 
